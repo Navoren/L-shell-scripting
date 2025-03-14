@@ -3,7 +3,7 @@
 install_requirements(){
     echo "Install Deps."
     sudo apt-get update
-    sudo apt-get install docker.io nginx -y
+    sudo apt-get install docker.io nginx -y docker-compose
 }
 
 required_restarts(){
@@ -23,7 +23,7 @@ deploy_app(){
     fi
 
     echo "Running Docker container..."
-    if ! docker run -d -p 8000:8000 notes-app:latest; then
+    if ! docker-compose up -d; then
         echo "Failed to start container"
         exit 1
     fi
